@@ -17,7 +17,7 @@ public class BulletFirePattern1 : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("SpawnProjectiles", 0, 2);
+       
         
     }
 
@@ -26,9 +26,12 @@ public class BulletFirePattern1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+      if(Input.GetKeyDown(KeyCode.Space))
+        {
+            SpawnProjectiles();
+        }
     }
-    private void SpawnProjectiles()
+    public void SpawnProjectiles()
     {
         float angleStep = (endAngle - startAngle) / bulAmount;
         float angle = startAngle;
