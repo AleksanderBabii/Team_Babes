@@ -4,38 +4,29 @@ using UnityEngine;
 
 public class GameControll : MonoBehaviour
 {
-    [SerializeField] GameObject player, turret;
-    [SerializeField] Transform posses;
+    public GameObject[] turrets;
+    [SerializeField]
 
-    Rigidbody2D playerRb, turretRb;
-
-    bool isPossesed;
-    public static bool playerPossesTheTurret;
+    GameObject currentTurret;
+    
 
     
-    // Start is called before the first frame update
+    
     void Start()
     {
-        playerRb = GetComponent<Rigidbody2D>();
-        turretRb = GetComponent<Rigidbody2D>();
+       for (int i = 1; i < turrets.Length; i++)
+       {
+            turrets[i].GetComponent<Turret>().enabled = false;  
+       }
+        currentTurret = turrets[0];
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeTurret(GameObject turret)
     {
-
+        currentTurret.GetComponent<Turret>().enabled = false;
+        currentTurret = turret;
     }
-    public void PossesTheTurret()
-    {
-        if (!isPossesed)
-        {
-            player.gameObject.SetActive(false);
-        }
-        if (isPossesed )
-        {
-            player.gameObject.SetActive(true);
-            player.transform.position = new Vector2(posses.position.x, posses.position.y);
-        }
-    }
+  
+   
 }
